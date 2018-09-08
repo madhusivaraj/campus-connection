@@ -4,28 +4,27 @@
     <meta charset="utf-8">
     <title>Campus Connection</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="../static/styles.css">
   </head>
   <body>
   {% extends 'base.html' %}
   {% block content %}
 
   {% if not username %}
-  <div style="text-align: center">
-  <br>  <br>  <br>  <br>
+  <div id="landing" style="text-align: center">
     <h1>Campus Connection</h1>
     <h3>Find your next study buddy!</h3>
-    
+
     <div>
-    <br>
-      <a href="{{ url_for('login') }}"><button style="height:75px;width:100px;box-shadow: 3px 3px 3px #78788c">
+      <a href="{{ url_for('login') }}"><button>
         Login
       </button></a>
         <br><br>
-      <a href="{{ url_for('register') }}"><button style="height:75px;width:100px;box-shadow: 3px 3px 3px #78788c">
+      <a href="{{ url_for('register') }}"><button>
         Register
       </button></a>
     </div>
+  </div>
 
     <hr>
 
