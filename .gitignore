@@ -1,3 +1,3 @@
-db.yaml
 __pycache__/*
 venv/*
+db.yaml
