@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Log In</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+<div style="text-align: center">
+<br><br><br><br>
+	<h1>Log In</h1>
+	<br>
+	<p><a href="{{ url_for('register')}}">New user? Click here to register!</a></p>
+	<form method="post">
+		Username <input type="text" name="username">
+		<br><br>
+		Password <input type="password" name="password">
+		<br><br>
+		<input type="submit" name="Submit">
+	</form>
+</div>
+{% endblock %}
+</body>
+</html>
