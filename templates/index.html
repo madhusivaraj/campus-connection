@@ -9,11 +9,13 @@
   <body>
   {% extends 'base.html' %}
   {% block content %}
+
+  {% if not username %}
   <div style="text-align: center">
   <br>  <br>  <br>  <br>
     <h1>Campus Connection</h1>
     <h3>Find your next study buddy!</h3>
-    {% if not username %}
+    
     <div>
     <br>
       <a href="{{ url_for('login') }}"><button style="height:75px;width:100px;box-shadow: 3px 3px 3px #78788c">
@@ -58,6 +60,7 @@
 
 
     {% else %}
+    <br><br><br>
     <h1 style="text-align: center">Welcome, {{username}}!</h1>
     {% endif %}
   </div>
