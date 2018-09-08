@@ -1,21 +1,23 @@
-from flask import Flask, render_template, url_for, session, request
+from flask import Flask, render_template, url_for, session, request, flash, redirect
 from passlib.hash import sha256_crypt
 import pymysql
 import yaml
 
 app = Flask(__name__)
 
-"""
+
 db = yaml.load(open('db.yaml'))
 myApp = pymysql.connect(host=db['mysql_host'], user=db['mysql_user'], password=db['mysql_password'], db=db['mysql_db'], charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
-"""
+
 
 @app.route('/')
 def index():
+	username=None
 	if 'username' in session:
 		username = session['username']
 		# check if user filled out profile + has matches
+		"""
 		cur = myApp.cursor()
 		cur.execute("SELECT userID FROM user WHERE username=%s", [username])
 		userID = cur.fetchone()['userID']
@@ -23,7 +25,8 @@ def index():
 		if cur.fetchone() is not None:
 			return render_template('index.html', username=username, profile=profile)
 		return render_template('index.html', username=username)
-	return render_template('index.html')
+		"""
+	return render_template('index.html', username=username)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -90,9 +93,15 @@ def login():
 		cur.close()
 	return render_template('login.html', error=error)
 
-#@app.route('/results')
-#def matches():
-	# stuff
+@app.route('/logout')
+def logout():
+	session.pop('username', None)
+	return redirect(url_for('index'))
+
+@app.route('/results')
+def results():
+	return "hi"
+app.secret_key = 'MVB79L'
 
 if __name__ == '__main__':
 	app.run(debug=True)
