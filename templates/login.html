@@ -2,16 +2,16 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<title>Log In</title>
+	<title>Sign In</title>
 </head>
 <body>
 {% extends 'base.html' %}
 {% block content %}
 <div style="text-align: center">
 <br><br><br><br>
-	<h1>Log In</h1>
+	<h1>Sign In</h1>
 	<br>
-	<p><a href="{{ url_for('register')}}">New user? Click here to register!</a></p>
+	<p><a href="{{ url_for('register')}}">If you are a new user, click here to register!</a></p>
 	<form method="post">
 		Username <input type="text" name="username">
 		<br><br>

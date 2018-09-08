@@ -25,8 +25,14 @@
         <a class="nav-link" href="{{ url_for('register')}}">Register</a>
        </li>
         {% else %}
-  		<li class="nav-item">
-        <a class="nav-link" href="{{ url_for('results')}}">Your Matches</a>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('profile')}}">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('calendar')}}">Calendar</a>
+        </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('matches')}}"> Matches</a>
        </li>
        <li class="nav-item">
         <a class="nav-link" href="{{ url_for('logout')}}">Log Out</a>
