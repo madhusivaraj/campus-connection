@@ -4,7 +4,9 @@ body {
   line-height: 2;
   font-family: 'Roboto', sans-serif;
   color: #000000;
-  background: url(../images/marble_background.jpg); }
+  /* background: url(../images/marble_background.jpg); */
+  background-color: red;
+}
 
 #page {
   position: relative;
@@ -44,10 +46,12 @@ p {
   margin-bottom: 20px; }
 
 h1{
-color: #FFFFFF;
+  color: #FFFFFF;
   font-family: 'Roboto';
   font-weight: 600;
-  margin: 0 0 20px 0; }
+  margin: 0 0 20px 0;
+  text-align:center;
+}
 
   h2{
   color: #000000;
