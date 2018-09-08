@@ -11,22 +11,30 @@
   {% block content %}
 
   {% if not username %}
-  <div id="landing" style="text-align: center">
-    <h1>Campus Connection</h1>
-    <h3>Find your next study buddy!</h3>
-
+  <!-- <header id="landing" style="text-align: center">
     <div>
-      <a href="{{ url_for('login') }}"><button>
+      <h1>Campus Connection</h1>
+      <h3>Find your next study buddy!</h3>
+    <a href="{{ url_for('login') }}">
+      <button>
         Login
-      </button></a>
-        <br><br>
-      <a href="{{ url_for('register') }}"><button>
+      </button>
+    </a>
+    <a href="{{ url_for('register') }}">
+      <button>
         Register
-      </button></a>
+      </button>
+    </a>
+    </div>
+  </header> -->
+
+  <div class="hero flex-center">
+    <div class="hero-message">
+      <h1 class="hero-title">Campus Connection</h1>
+      <h2 class="hero-sub-title">Find your next study buddy!</h2>
     </div>
   </div>
 
-    <hr>
 
     <div class="container">
         <div class="row">
@@ -59,7 +67,6 @@
 
 
     {% else %}
-    <br><br><br>
     <h1 style="text-align: center">Welcome, {{username}}!</h1>
     {% endif %}
   {% endblock %}
