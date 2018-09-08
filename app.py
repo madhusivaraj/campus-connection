@@ -118,13 +118,10 @@ def profile():
     username = session['username']
     timeslots=None
     cur = myApp.cursor()
-    cur.execute("SELECT * FROM days")
-    rows = cur.fetchall()
     days = collections.OrderedDict()
-    i = 0
-    for row in rows:
-    	days[i] = row['day']
-    	i = i + 1
+    week = ['SU', 'M', 'T', 'W', 'TH', 'F', 'S']
+    for i in range(0, 6):
+    	days[i] = week[i]
 
     i = 0
     times = collections.OrderedDict()
