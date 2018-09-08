@@ -98,9 +98,9 @@ def logout():
 	session.pop('username', None)
 	return redirect(url_for('index'))
 
-@app.route('/results')
+@app.route('/results', methods=['GET', 'POST'])
 def results():
-	return "hi"
+	return render_template('results.html')
 app.secret_key = 'MVB79L'
 
 if __name__ == '__main__':
