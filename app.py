@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, session, request, flash, redi
 from passlib.hash import sha256_crypt
 import pymysql
 import yaml
+import collections
 
 app = Flask(__name__)
 
@@ -115,11 +116,29 @@ def matches():
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     username = session['username']
+    timeslots=None
+    cur = myApp.cursor()
+    cur.execute("SELECT * FROM days")
+    rows = cur.fetchall()
+    days = collections.OrderedDict()
+    i = 0
+    for row in rows:
+    	days[i] = row['day']
+    	i = i + 1
+
+    i = 0
+    times = collections.OrderedDict()
+    cur.execute("SELECT * FROM timeslots")
+    rows = cur.fetchall()
+    for row in rows:
+    	times[i] = row['ts']
+    	i = i + 1
+
     if request.form == 'POST':
-        userDetails = request.form()
         timeslots = request.form.getlist('timeslots[]')
-        return render_template('profile.html', timeslots=timeslots, username=username)
-    return render_template('profile.html', username=username)
+        return render_template('profile.html', timeslots=timeslots, username=username, times=times, days=days)
+    return render_template('profile.html', username=username, days=days, timeslots=timeslots, times=times)
+
 app.secret_key = 'MVB79L'
 
 if __name__ == '__main__':

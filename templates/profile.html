@@ -9,6 +9,17 @@
 {% block content %}
   <form method='post'>
 
+  <table style="border:1px solid black;">
+  	{% for i in range(0, 47)%}
+  		<tr>
+  			{% for j in range (0, 6) %}
+  			<td>
+  				<input type="checkbox" name="{{days[j]}}{{times[i]}}">
+  			</td>
+  			{% endfor %}
+  		</tr>
+  	{% endfor %}
+  </table>
 
   </form>
 {% endblock %}
