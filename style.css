@@ -1,0 +1,63 @@
+body {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 2;
+  font-family: 'Roboto', sans-serif;
+  color: #000000;
+  background: url(../images/marble_background.jpg); }
+
+#page {
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s; }
+  .offcanvas #page {
+    overflow: hidden;
+    position: absolute; }
+    .offcanvas #page:after {
+      -webkit-transition: 2s;
+      -o-transition: 2s;
+      transition: 2s;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 101;
+      background: rgba(0, 0, 0, 0.7);
+      content: ""; }
+
+a {
+  color: #2877C7;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s; }
+  a:hover, a:active, a:focus {
+    color: #00335C;
+    outline: none;
+    text-decoration: none; }
+
+p {
+  margin-bottom: 20px; }
+
+h1{
+color: #FFFFFF;
+  font-family: 'Roboto';
+  font-weight: 600;
+  margin: 0 0 20px 0; }
+
+  h2{
+  color: #000000;
+    font-family: 'Roboto';
+    font-weight: 600;
+    margin: 0 0 20px 0; }
+
+
+h3, h4, h5, h6, figure {
+  color: #000;
+  font-family: 'Roberto', sans-serif;
+  font-weight: 600;
+  margin: 0 0 20px 0; }

@@ -39,14 +39,14 @@ def register():
 
 		cur = myApp.cursor()
 		cur.execute("SELECT * FROM user WHERE username = %s", [username])
-		
+
 		#error handling
 		if cur.fetchone() is not None:
 			error.append('Please choose a different username.')
 			isIssue = True
 
 		cur.execute("SELECT * FROM user WHERE email = %s", [email])
-		
+
 		if cur.fetchone() is not None:
 			error.append('Email already registered.')
 			isIssue = True
@@ -61,7 +61,7 @@ def register():
 		# if no errors, add to database
 		cur.execute("INSERT INTO user(email, username, password) VALUES(%s, %s, %s)", [email, username, sha256_crypt.encrypt(password)])
 		myApp.commit()
-		cur.close() 
+		cur.close()
 		flash('Congrats! You are now a registered user.')
 		return redirect(url_for('login'))
 	return render_template('register.html')
@@ -93,6 +93,6 @@ def login():
 #@app.route('/results')
 #def matches():
 	# stuff
-    
+
 if __name__ == '__main__':
 	app.run(debug=True)
