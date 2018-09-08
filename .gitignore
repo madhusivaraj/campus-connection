@@ -1,3 +1,6 @@
-db.yaml
 __pycache__/*
 venv/*
+<<<<<<< HEAD
+=======
+db.yaml
+>>>>>>> e0137f81b411ba2be14aa6d0ab4fb8c9613913a2
