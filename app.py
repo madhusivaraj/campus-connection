@@ -98,9 +98,21 @@ def logout():
 	session.pop('username', None)
 	return redirect(url_for('index'))
 
-@app.route('/results', methods=['GET', 'POST'])
-def results():
-	return render_template('results.html')
+@app.route('/calendar')
+def calendar():
+	return render_template('calendar.html')
+
+@app.route('/matches')
+def matches():
+	return render_template('matches.html')
+
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    if request.form == 'POST':
+        userDetails = request.form()
+        timeslots = request.form.getlist('timeslots[]')
+        return render_template('profile.html', timeslots=timeslots)
+    return render_template('profile.html')
 app.secret_key = 'MVB79L'
 
 if __name__ == '__main__':
