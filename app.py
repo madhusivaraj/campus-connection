@@ -98,21 +98,28 @@ def logout():
 	session.pop('username', None)
 	return redirect(url_for('index'))
 
-@app.route('/calendar')
+@app.route('/calendar', methods=['GET', 'POST'])
 def calendar():
-	return render_template('calendar.html')
+    username=session['username']
+    if request.form == 'POST':
+        return render_template('calendar.html', username=username)
+    return render_template('calendar.html', username=username)
 
-@app.route('/matches')
+@app.route('/matches', methods=['GET', 'POST'])
 def matches():
-	return render_template('matches.html')
+    username=session['username']
+    if request.form == 'POST':
+        return render_template('matches.html', username=username)
+    return render_template('matches.html', username=username)
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
+    username = session['username']
     if request.form == 'POST':
         userDetails = request.form()
         timeslots = request.form.getlist('timeslots[]')
-        return render_template('profile.html', timeslots=timeslots)
-    return render_template('profile.html')
+        return render_template('profile.html', timeslots=timeslots, username=username)
+    return render_template('profile.html', username=username)
 app.secret_key = 'MVB79L'
 
 if __name__ == '__main__':
