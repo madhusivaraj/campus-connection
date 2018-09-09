@@ -1,11 +1,17 @@
+from __future__ import print_function
 from flask import Flask, render_template, url_for, session, request, flash, redirect
 from passlib.hash import sha256_crypt
 import pymysql
 import yaml
 import collections
+import datetime
+from googleapiclient.discovery import build
+from httplib2 import Http
+from oauth2client import file, client, tools
 
 app = Flask(__name__)
 
+SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 
 db = yaml.load(open('db.yaml'))
 myApp = pymysql.connect(host=db['mysql_host'], user=db['mysql_user'], password=db['mysql_password'], db=db['mysql_db'], charset='utf8mb4',
@@ -99,11 +105,38 @@ def logout():
 	session.pop('username', None)
 	return redirect(url_for('index'))
 
+
+
+
 @app.route('/calendar', methods=['GET', 'POST'])
 def calendar():
+
+    store = file.Storage('token.json')
+    creds = store.get()
+    if not creds or creds.invalid:
+        flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
+        creds = tools.run_flow(flow, store)
+    service = build('calendar', 'v3', http=creds.authorize(Http()))
+
+    # Call the Calendar API
+    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+    print('Getting the upcoming 10 events')
+    events_result = service.events().list(calendarId='primary', timeMin=now,
+                                    maxResults=10, singleEvents=True,
+                                    orderBy='startTime').execute()
+    events = events_result.get('items', [])
+
+    if not events:
+        print('No upcoming events found.')
+
+    for event in events:
+        start = event['start'].get('dateTime', event['start'].get('date'))
+        print(start, event['summary'])
+
     username=session['username']
     if request.form == 'POST':
         return render_template('calendar.html', username=username)
+
     return render_template('calendar.html', username=username)
 
 @app.route('/matches', methods=['GET', 'POST'])
