@@ -116,11 +116,11 @@ def matches():
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     username = session['username']
-    timeslots=None
+    timeslots = None
     cur = myApp.cursor()
     days = collections.OrderedDict()
-    week = ['SU', 'M', 'T', 'W', 'TH', 'F', 'S']
-    for i in range(0, 6):
+    week = ['M', 'T', 'W', 'TH', 'F', 'S', 'SU']
+    for i in range(0, 7):
     	days[i] = week[i]
 
     i = 0
@@ -131,10 +131,24 @@ def profile():
     	times[i] = row['ts']
     	i = i + 1
 
+    timesArr = ["12:00 AM", "12:30 AM", "1:00 AM", "1:30 AM", "2:00 AM", "2:30 AM", "3:00 AM", "3:30 AM",
+   			"4:00 AM", "4:30 AM", "5:00 AM", "5:30 AM", "6:00 AM", "6:30 AM", "7:00 AM", "7:30 AM",
+   			"8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+   			"12:00 PM", "12:30 PM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM",
+   			"4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM",
+   			"8:00 PM", "8:30 PM", "9:00 PM", "9:30 PM", "10:00 PM", "10:30 PM", "11:00 PM", "11:30 PM"]
+
     if request.form == 'POST':
-        timeslots = request.form.getlist('timeslots[]')
-        return render_template('profile.html', timeslots=timeslots, username=username, times=times, days=days)
-    return render_template('profile.html', username=username, days=days, timeslots=timeslots, times=times)
+        timeslots = request.form.getlist('timeslots[]', None)
+        cur.execute("SELECT userID FROM user WHERE username=%s", [username])
+        userID = cur.fetchall()['userID']
+        for i in range(0, len(timeslots)):
+        	tsID = timeslots[i]
+        	cur.execute("INSERT INTO usertots VALUES(%s, %s)", [userID, tsID])
+        	myApp.commit()
+        cur.close()
+        return render_template('profile.html', timeslots=timeslots, username=username, times=times, days=days, timesArr=timesArr)
+    return render_template('profile.html', username=username, days=days, timeslots=timeslots, times=times, timesArr=timesArr)
 
 app.secret_key = 'MVB79L'
 

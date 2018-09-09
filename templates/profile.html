@@ -2,26 +2,62 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
 	<title>My Profile</title>
 </head>
 <body>
 {% extends 'base.html' %}
 {% block content %}
+<h1 style="text-align: center">Customize Your Profile</h1>
+<div style="text-align: center">
   <form method='post'>
 
-  <table style="border:1px solid black;">
-  	{% for i in range(0, 47)%}
+  <table style="border:1px solid black; text-align: center;"
+  <col>
+  <thead style="text-align: center">
+    <td></td>
+    <td>
+    Monday
+    </td>
+    <td>
+      Tuesday
+    </td>
+    <td>
+      Wednesday
+    </td>
+    <td>
+      Thursday
+    </td>
+    <td>
+      Friday
+    </td>
+    <td>
+      Saturday
+    </td>
+    <td>
+      Sunday
+    </td>
+  </thead>
+
+  	{% for i in range(0, 48)%}
   		<tr>
-  			{% for j in range (0, 6) %}
+  			{% for j in range (0, 8) %}
+        
   			<td>
-  				<input type="checkbox" name="{{days[j]}}{{times[i]}}">
-  			</td>
+        {% if j > 0 %}
+  			   <input type="checkbox" name="{{days[j - 1]}}{{times[i][1:]}}">
+        {% else %}
+          <p style="text-align: center">{{timesArr[i]}}</p>
+        {% endif %}
+        </td>
+        
   			{% endfor %}
   		</tr>
   	{% endfor %}
   </table>
-
+<input type="submit" name="Submit">
   </form>
+  </div>
 {% endblock %}
 </body>
 </html>
