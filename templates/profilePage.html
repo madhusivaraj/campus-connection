@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ username }} | Campus Connection</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="text-align: center;">
+	<h1>{{ username }}</h1>	
+	Availability:
+	<ul>
+		{% for time in times %}
+		
+			{{ time }}
+		<br>
+		{% endfor %}
+	</ul>
+</div>
+
+{% endblock %}
+</body>
+</html>

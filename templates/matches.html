@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" type="text/css" href="static/styles.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<title>My Matches</title>
 </head>
 <body>
 {% extends 'base.html' %}
 {% block content %}
+{% if num != 0 %}
+<div style="text-align: center">
+<br><br><br>
+<h1>Hi {{username}}! Here are your matches! </h1>
+<h3>{{ num }} {% if num > 1 %} results {% else %} result {% endif %}</h3>
+<div style="text-align: center;">
+	<table border=1>
+		{% for key, value in results.items() %}
+			<tr>
+				<td>
+					<a href={{ url_for('profilePage', username=key) }}>User: {{ key }}</a>
+				</td>
 
+				<td>
+					<strong>{{ value|length }} {% if value|length != 1 %} matches {% else %} match {% endif %} </strong>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+{% else %}
+<br><br><br><br>
+<h1 style="text-align: center">Hi {{username}}! Unfortunately we don't have any study buddies for you right now. Please check back later! </h1>
+{% endif %}
+</div>
 {% endblock %}
 </body>
 </html>

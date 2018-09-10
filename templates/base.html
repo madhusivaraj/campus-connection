@@ -26,10 +26,10 @@
        </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('profile')}}">Profile</a>
+          <a class="nav-link" href={{url_for('profilePage', username=username) }}>Your Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('calendar')}}">Calendar</a>
+          <a class="nav-link" href="{{ url_for('profile')}}">Profile</a>
         </li>
        <li class="nav-item">
         <a class="nav-link" href="{{ url_for('matches')}}"> Matches</a>
