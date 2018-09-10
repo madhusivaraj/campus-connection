@@ -26,7 +26,7 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.15;
+  opacity: 0.5;
 }
 
 .flex-center {
@@ -36,16 +36,16 @@ body, html {
   align-content: center;
   text-align: center;
 }
-.hero-message {
+/*.hero-message {
   text-shadow: #343a40 1.0px 1.0px;
   font-size: 1.5rem;
-  /* position: relative; */
+  /* position: relative;
 }
 
 .hero-title {
   margin-top: 0px;
   margin-bottom: 70px;
-}
+}*/
 
 header {
   background-color: rgba(200, 200, 200, 0.5);
